@@ -1,7 +1,7 @@
 import Button from './button.vue'
-// import Icon from './icon.vue'
+import Icon from './icon.vue'
 
-const component = [Button]
+const component = [Button, Icon]
 
 
 export default (app) => {

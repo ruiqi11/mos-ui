@@ -1,5 +1,6 @@
 <template>
   <button class="mos-button" :class="btnClass">
+    <mos-icon :icon="icon" v-if="icon" class="icon"></mos-icon>
     <span v-if="this.$slots.default">
       <slot></slot>
     </span>
@@ -7,8 +8,10 @@
 </template>
 <script>
 import { computed } from "vue"
+import MosIcon from './icon.vue'
 export default {
   name: "MosButton",
+  components: {MosIcon},
   props: {
     type: {
       type: String,
@@ -19,18 +22,42 @@ export default {
         }
         return true
       }
+    },
+    icon: {
+      type: String
+    },
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator (data) {
+        let Arr = ['left', 'right']
+        if (data && Arr.indexOf(data) == -1) {
+          console.error('iconPosition类型必须为left,right')
+          return true
+        }
+        return true
+      }
     }
   },
   setup(props) {
-    let btnClass = computed(() => {
+    // 按钮类型
+    const btnClass = computed(() => {
       let classes = []
       if (props.type) {
         classes.push(`mos-button-${props.type}`)
       } else {
         return
       }
+      if (props.iconPosition) {
+        classes.push(`icon-${props.iconPosition}`)
+      }
       return classes
     })
+
+    // 图标位置
+    // const iconPosition = computed(() => {
+
+    // })
     return {
       btnClass
     }
@@ -96,6 +123,28 @@ $active-color: #3a8ee6;
       border: 1px solid #{$color};
       color: #fff;
     }
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+.icon-left {
+  .icon {
+    order: 1; // 顺序排第一
+    margin-right: 5px;
+  }
+  span {
+    order: 2; // 顺序排第二
+  }
+}
+.icon-right {
+  .icon {
+    margin-left: 5px;
+    order: 2;
+  }
+  span {
+    order: 1;
   }
 }
 </style>
