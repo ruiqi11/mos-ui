@@ -1,6 +1,9 @@
 <template>
-  <button class="mos-button" :class="btnClass">
+  <button class="mos-button" :disabled='loading' :class="btnClass">
+    <!-- 字体图标 -->
     <mos-icon :icon="icon" v-if="icon" class="icon"></mos-icon>
+    <!-- 加载状态 -->
+    <mos-icon icon="icon-jiazai" v-if="loading" class="icon"></mos-icon>
     <span v-if="this.$slots.default">
       <slot></slot>
     </span>
@@ -37,6 +40,10 @@ export default {
         }
         return true
       }
+    },
+    loading: {
+      type: Boolean, // 布尔类型在传值的时候可以直接写不用赋值
+      default: false
     }
   },
   setup(props) {
@@ -54,10 +61,6 @@ export default {
       return classes
     })
 
-    // 图标位置
-    // const iconPosition = computed(() => {
-
-    // })
     return {
       btnClass
     }
@@ -127,6 +130,13 @@ $active-color: #3a8ee6;
   .icon {
     width: 16px;
     height: 16px;
+  }
+  // loading 状态
+  &[disabled]{ // 属性选择器
+    cursor: not-allowed; // 禁止点击
+    .icon {
+      @include spin; // 旋转
+    }
   }
 }
 .icon-left {

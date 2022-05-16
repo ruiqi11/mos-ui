@@ -14,6 +14,8 @@
     <br>
     <mos-button type="primary" icon='icon-shezhi'>设置</mos-button>
     <mos-button type="primary" icon='icon-shezhi' iconPosition="right">设置</mos-button>
+    <br>
+    <mos-button type="primary" loading>加载中</mos-button>
   </div>
 </template>
 
