@@ -29,7 +29,22 @@
     <mos-input value="禁止输入" disabled></mos-input>
     <mos-input value="只读" readonly></mos-input>
     <mos-input value="值" error="错误"></mos-input>
+    <br>
+    <mos-input v-model="value"></mos-input>
+    <div>
+      value: {{value}}
+    </div>
+    <br>
+    <br>
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      value: 1
+    }
+  }
+}
+</script>
 

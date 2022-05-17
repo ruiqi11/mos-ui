@@ -4,12 +4,12 @@
     去触发自定义事件，将value作为参数传入父组件中-->
     <input
       type="text"
-      :value="value"
+      :value="modelValue"
       :title="title"
       :disabled="disabled"
       :readonly="readonly"
       @change="$emit('change', $event.target.value)"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
       @focus="$emit('focus', $event.target.value)"
       @blur="$emit('blur', $event.target.value)"
     />
@@ -28,7 +28,7 @@ export default {
     'MosIcon': Icon
   },
   props: {
-    value: {
+    modelValue: {
       type: String
     },
     // 鼠标放置显示的提示
