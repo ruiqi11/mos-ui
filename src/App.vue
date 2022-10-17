@@ -30,12 +30,21 @@
     <mos-input value="只读" readonly></mos-input>
     <mos-input value="值" error="错误"></mos-input>
     <br>
+    <!-- 双向绑定（Vue自有的） -->
     <mos-input v-model="value"></mos-input>
     <div>
       value: {{value}}
     </div>
     <br>
     <br>
+    <!-- tabs -->
+    <mos-tabs :selected="selected">
+      <mos-tabs v-model:selected="selectTab">
+        <mos-tabs-item label="星星" name="star">一颗小星星</mos-tabs-item>
+        <mos-tabs-item label="羊" name="sheep">羊羊羊</mos-tabs-item>
+        <mos-tabs-item label="咩咩" name="mie">咩咩是全世界最可爱的猫咪</mos-tabs-item>
+      </mos-tabs>
+    </mos-tabs>
   </div>
 </template>
 <script>
